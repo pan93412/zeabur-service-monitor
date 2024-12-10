@@ -86,6 +86,8 @@ func main() {
 
 	http.HandleFunc("GET /alive", func(w http.ResponseWriter, r *http.Request) {
 		jw := json.NewEncoder(w)
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Cache-Control", "max-age=60, must-revalidate")
 
 		payload := map[string]any{
 			"success":       status,
